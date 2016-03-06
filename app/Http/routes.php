@@ -11,9 +11,9 @@
 |
 */
 
-Route::get('/', function () {
+/*Route::get('/', function () {
     return view('welcome');
-});
+});*/
 
 /*
 |--------------------------------------------------------------------------
@@ -28,4 +28,18 @@ Route::get('/', function () {
 
 Route::group(['middleware' => ['web']], function () {
     //
+    Route::get('/', ['uses' => 'homeController@index', 'as' => 'homePage']);
+    Route::get('/book', ['uses' => 'bookController@show', 'as' => 'bookPage']);
+    Route::get('/remark', ['uses' => 'remarkController@show', 'as' => 'remarkPage']);
+    Route::post('/provide', ['uses' => 'bookController@provide', 'as' => 'provide']);
+    Route::get('/book/{id}', ['uses' => 'bookController@book', 'as' => 'book'])->where('id', '[0-9]+');
+    Route::post('/remoark', ['uses' => 'remarkController@remark', 'as' => 'remark']);
+    Route::get('/chat/{id}', ['uses' => 'chatController@show', 'as' => 'chatPage'])->where('id', '[0-9]+');
+    Route::post('/chat', ['uses' => 'chatController@chat', 'as' => 'chat']);
+});
+
+Route::group(['middleware' => 'web'], function () {
+    Route::auth();
+
+    Route::get('/home', 'HomeController@index');
 });
