@@ -12,16 +12,18 @@
                         please input your book's information
                     </div>
                     <div class="panel-body">
-                        @if(Session::has('error'))
-                            {{Session::get('error')}}
+                        @if(Session::has('success'))
+                            <div style="padding: 15px;" class="bg-success">{{ Session::get('success') }}</div>
+                        @elseif(Session::has('error'))
+                            <div style="padding: 15px;" class="bg-danger">{{ Session::get('error') }}</div>
                         @endif
                         <div class="form-group">
                             <label for="name">book name:</label>
-                            <input type="text" class="form-control" id="name" name="name">
+                            <input type="text" class="form-control" id="name" name="name" placeholder="请在此输入你想提供的书的书名">
                         </div>
                         <div class="form-group">
                             <label for="describe">book description:</label>
-                            <textarea name="description" class="form-control" id="describe" cols="30" rows="10"></textarea>
+                            <textarea name="description" class="form-control" id="describe" cols="30" rows="10" placeholder="请在此输入您提供书的详细信息，并写明您想交换的书名"></textarea>
                         </div>
                         <button type="submit" class="btn btn-primary">submit</button>
                     </div>

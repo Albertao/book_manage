@@ -15,7 +15,7 @@
                             </tr>
                             <tr>
                                 <td width="32px"></td>
-                                <td style="font-family: Roboto-Regular,Helvetica,Arial,sans-serif; font-size: 24px; color: #FFFFFF; line-height: 1.25;">重新设置您的密码</td>
+                                <td style="font-family: Roboto-Regular,Helvetica,Arial,sans-serif; font-size: 24px; color: #FFFFFF; line-height: 1.25;">您的书籍已被预定</td>
                                 <td width="32px"></td></tr><tr><td height="18px" colspan="3"></td>
                             </tr>
                             </tbody>
@@ -37,13 +37,14 @@
                                         <tbody>
                                         <tr>
                                             <td style="font-family: Roboto-Regular,Helvetica,Arial,sans-serif; font-size: 13px; color: #202020; line-height: 1.5;">
-                                                <br><b>尊敬的{{ $user->name }}，您好！</b>
+                                                <br><b>尊敬的{{$name}}，您好！</b>
                                             </td>
                                         </tr>
                                         <tr>
                                             <td style="font-family: Roboto-Regular,Helvetica,Arial,sans-serif; font-size: 13px; color: #202020; line-height: 1.5;">
-                                                您正在重置您的密码,现在您可能需要点击
-                                                <a href="{{ url('password/reset', $token).'?email='.urlencode($user->getEmailForPasswordReset()) }}" style="text-decoration: none; color: #4285F4;" target="_blank">这个链接</a>来完成注册的最后一步。
+                                                您在轻工化工鸿鹄学生会的书籍交换系统中托管的书籍 <span style="color: #66ccff;  ">{{$book_name}}</span> ，已被用户 <span style="color: #66ccff;">{{$book_user_name}}</span> 预定
+                                                <br>现在你可以通过对方的电子邮件
+                                                <a href="" style="text-decoration: none; color: #4285F4;" target="_blank">{{$email}}</a>来与其取得联系。
                                                 <br><br>
                                                 <b>此活动不是您本人所为吗？</b>
                                                 <br>那么请您无视这封邮件。
@@ -75,7 +76,7 @@
                         <table style="font-family: Roboto-Regular,Helvetica,Arial,sans-serif; font-size: 10px; color: #666666; line-height: 18px; padding-bottom: 10px">
                             <tbody>
                             <tr>
-                                <td>我们向您发送这封重要的电子邮件通知，目的是让您完成密码重置的这一步骤。</td>
+                                <td>我们向您发送这封重要的电子邮件通知，目的是让您完成您的账号的注册。</td>
                             </tr>
                             </tbody>
                         </table>

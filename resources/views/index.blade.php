@@ -9,6 +9,11 @@
     </div>
     <div class="container">
         <div class="row ">
+            @if(Session::has('success'))
+                <div style="padding: 15px;" class="bg-success">{{ Session::get('success') }}</div>
+            @elseif(Session::has('error'))
+                <div style="padding: 15px;" class="bg-danger">{{ Session::get('error') }}</div>
+            @endif
             <div class="list-group">
                 @foreach($books as $book)
                 <div class="list-group-item col-xs-12">
@@ -17,11 +22,12 @@
                         <p>{{$book->description}}</p>
                     </div>
                     <div class="col-xs-4">
-                        <a href="" class="btn btn-primary btn-block" style="margin-top: 15px;">Book</a>
+                        <a href="{{ URL::route('book', $book->id) }}" class="btn btn-primary btn-block" style="margin-top: 15px;">Book</a>
                     </div>
                 </div>
                 @endforeach
             </div>
+            {!! $books->render() !!}
         </div>
     </div>
 @endsection

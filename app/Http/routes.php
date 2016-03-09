@@ -36,6 +36,8 @@ Route::group(['middleware' => ['web']], function () {
     Route::post('/remoark', ['uses' => 'remarkController@remark', 'as' => 'remark']);
     Route::get('/chat/{id}', ['uses' => 'chatController@show', 'as' => 'chatPage'])->where('id', '[0-9]+');
     Route::post('/chat', ['uses' => 'chatController@chat', 'as' => 'chat']);
+    //mail send
+    Route::get('/send', 'mailController@send');
 });
 
 Route::group(['middleware' => 'web'], function () {
