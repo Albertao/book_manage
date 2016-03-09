@@ -29,19 +29,23 @@ class bookController extends Controller
             $model->is_booked = 1;
             if($model->save()){
                 $email = $model->user->email;
-                $flag = Mail::send('email', ['name' => $model->user->name, 'book_name' => $model->name, 'email' => Auth::user()->email, 'book_user_name' => Auth::user()->name, ], function($msg) use ($email){
-                    $msg->to($email)->subject('your book has been booked');
+                $anotherEmail = Auth::user()->email;
+                $toUser = Mail::send('email', ['name' => $model->user->name, 'book_name' => $model->name, 'email' => Auth::user()->email, 'book_user_name' => Auth::user()->name, ], function($msg) use ($email){
+                    $msg->to($email)->subject('您发布交换的书籍已被确认');
                 });
-                if($flag){
-                    return redirect()->back()->with(['success' => 'book succeed']);
+                $toBookedUser = Mail::send('email2', ['name' => Auth::user()->name, 'book_name' => $model->name, 'email' => $email], function($msg) use($anotherEmail) {
+                    $msg->to($anotherEmail)->subject('您的预定已经确认');
+                });
+                if($toBookedUser && $toUser){
+                    return redirect()->back()->with(['success' => '预定成功']);
                 }else{
-                    return redirect()->back()->with(['error' => 'mail send failed']);
+                    return redirect()->back()->with(['error' => '邮件发送失败，请稍后再试']);
                 }
             }else{
-                return redirect()->back()->with(['error' => 'book failed,please try again']);
+                return redirect()->back()->with(['error' => '预定失败，请稍后再试']);
             }
         }else{
-            return redirect()->back()->with(['error' => 'you haven\'t login']);
+            return redirect()->back()->with(['error' => '您尚未登录']);
         }
     }
 
@@ -53,12 +57,12 @@ class bookController extends Controller
             $model->description = Request::get('description');
             $model->is_booked = 0;
             if($model->save()){
-                return redirect()->back()->with(['success' => 'book succeed']);
+                return redirect()->back()->with(['success' => '发布成功']);
             }else{
-                return redirect()->back()->with(['error' => 'book failed,please try again']);
+                return redirect()->back()->with(['error' => '发布失败，请稍后再试']);
             }
         }else{
-            return redirect()->back()->with(['error' => 'you haven\'t login']);
+            return redirect()->back()->with(['error' => '您尚未登录']);
         }
     }
 

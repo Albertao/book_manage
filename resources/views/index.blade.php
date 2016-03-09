@@ -2,9 +2,10 @@
 @section('content')
     <div class="jumbotron">
         <div class="container">
-            <h1>today,which book do u wanna exchange?</h1>
-            <a href="" class="btn btn-primary">Learn more</a>
-            <a href="{{ URL::route('bookPage') }}" class="btn btn-success">Provide book</a>
+            <h1>今天，你想换啥书呢？</h1><br>
+            <a href="" class="btn btn-primary" title="了解更多走这边～">了解更多</a>
+            <a href="{{ URL::route('bookPage') }}" class="btn btn-success" title="提供书籍走这边~">提供书籍</a>
+            <a href="{{ URL::route('remarkPage') }}" class="btn btn-info" title="给我们留言走这边~">留言</a>
         </div>
     </div>
     <div class="container">
