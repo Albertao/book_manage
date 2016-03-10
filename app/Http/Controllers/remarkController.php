@@ -20,11 +20,15 @@ class remarkController extends Controller
         if(Auth::check()){
             $model = new Remark();
             $model->user_id = Auth::user()->id;
-            $model->content = Request::get('content');
-            if($model->save()){
-                return redirect()->back()->with(['success' => '留言成功']);
+            if(Request::get('content')){
+                $model->content = Request::get('content');
+                if($model->save()){
+                    return redirect()->back()->with(['success' => '留言成功']);
+                }else{
+                    return redirect()->back()->with(['error' => '留言失败，请稍后再试']);
+                }
             }else{
-                return redirect()->back()->with(['error' => '留言失败，请稍后再试']);
+                return redirect()->back()->with(['error' => '留言不能为空']);
             }
         }else{
             return redirect()->back()->with(['error' => '您还未登录']);

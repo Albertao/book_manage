@@ -9,6 +9,13 @@
         </div>
     </div>
     <div class="container">
+        <div class="row form-group">
+            <form action="{{ URL::route('search') }}" method="post">
+                <input type="text" class="form-control col-xs-6" placeholder="" name="name">
+                {{ csrf_field() }}
+                <button type="submit" class="btn btn-primary col-xs-4">SUBMIT</button>
+            </form>
+        </div>
         <div class="row ">
             @if(Session::has('success'))
                 <div style="padding: 15px;" class="bg-success">{{ Session::get('success') }}</div>
@@ -23,7 +30,7 @@
                         <p>{{$book->description}}</p>
                     </div>
                     <div class="col-xs-4">
-                        <a href="{{ URL::route('book', $book->id) }}" class="btn btn-primary btn-block" style="margin-top: 15px;">Book</a>
+                        <a href="{{ URL::route('book', $book->id) }}" class="btn btn-primary btn-block" style="margin-top: 15px;">预定</a>
                     </div>
                 </div>
                 @endforeach

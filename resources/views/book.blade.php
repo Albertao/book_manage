@@ -9,7 +9,7 @@
                 <br>
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        please input your book's information
+                        请输入您要提供的书籍的信息
                     </div>
                     <div class="panel-body">
                         @if(Session::has('success'))
