@@ -14,6 +14,7 @@
                 <div class="col-xs-8">
                     <input type="text" class="form-control col-xs-6" placeholder="" name="name">
                 </div>
+
                 {{ csrf_field() }}
                 <div class="col-xs-4">
                     <button type="submit" class="btn btn-primary">Search</button>
@@ -21,25 +22,23 @@
             </form>
         </div>
         <div class="row">
-            @if(Session::has('success'))
-                <div style="padding: 15px;" class="bg-success">{{ Session::get('success') }}</div>
-            @elseif(Session::has('error'))
-                <div style="padding: 15px;" class="bg-danger">{{ Session::get('error') }}</div>
-            @endif
-            <div class="list-group">
+            @if(count($books) == 0)
+                <div style="padding: 15px;" class="bg-info">暂无搜索结果</div>
+            @else
+                <div class="list-group">
                 @foreach($books as $book)
-                <div class="list-group-item col-xs-12">
-                    <div class="col-xs-8">
-                        <h4>{{$book->name}}</h4>
-                        <p>{{$book->description}}</p>
+                    <div class="list-group-item col-xs-12">
+                        <div class="col-xs-8">
+                            <h4>{{$book->name}}</h4>
+                            <p>{{$book->description}}</p>
+                        </div>
+                        <div class="col-xs-4">
+                            <a href="{{ URL::route('book', $book->id) }}" class="btn btn-primary btn-block" style="margin-top: 15px;">预定</a>
+                        </div>
                     </div>
-                    <div class="col-xs-4">
-                        <a href="{{ URL::route('book', $book->id) }}" class="btn btn-primary btn-block" style="margin-top: 15px;">预定</a>
-                    </div>
-                </div>
                 @endforeach
+                @endif
             </div>
-            {!! $books->render() !!}
         </div>
     </div>
 @endsection

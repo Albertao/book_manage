@@ -17,7 +17,7 @@ class homeController extends Controller
 
     public function search(){
         $kw = Request::get('name');
-        $books = Book::where('name', 'like', '%'.$kw.'%')->paginate(20);
-        return view('index')->with(['books' => $books]);
+        $books = Book::where('name', 'like', '%'.$kw.'%')->where('is_booked', 0)->get();
+        return view('search')->with(['books' => $books]);
     }
 }
