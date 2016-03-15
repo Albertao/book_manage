@@ -28,6 +28,7 @@
 
 Route::group(['middleware' => ['web']], function () {
     //
+    Route::auth();
     Route::get('/', ['uses' => 'homeController@index', 'as' => 'homePage']);
     Route::get('/book', ['uses' => 'bookController@show', 'as' => 'bookPage']);
     Route::get('/remark', ['uses' => 'remarkController@show', 'as' => 'remarkPage']);
@@ -37,12 +38,7 @@ Route::group(['middleware' => ['web']], function () {
     Route::get('/chat/{id}', ['uses' => 'chatController@show', 'as' => 'chatPage'])->where('id', '[0-9]+');
     Route::post('/chat', ['uses' => 'chatController@chat', 'as' => 'chat']);
     Route::post('/search', ['as' => 'search', 'uses' => 'homeController@search']);
+    Route::get('/my', ['as' => 'myPage', 'uses' => 'bookManageController@show']);
+    Route::get('/delete/{id}', ['as' => 'bookDelete', 'uses' => 'bookManageController@delete'])->where('id', '[0-9]+');
 });
 
-Route::group(['middleware' => 'web'], function () {
-    Route::auth();
-
-    Route::get('/home', function(){
-        dd(Session::all());
-    });
-});
