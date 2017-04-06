@@ -40,5 +40,6 @@ Route::group(['middleware' => ['web']], function () {
     Route::post('/search', ['as' => 'search', 'uses' => 'homeController@search']);
     Route::get('/my', ['as' => 'myPage', 'uses' => 'bookManageController@show']);
     Route::get('/delete/{id}', ['as' => 'bookDelete', 'uses' => 'bookManageController@delete'])->where('id', '[0-9]+');
+    Route::get('mail', ['as' => 'send', 'uses' => 'mailController@send']);
 });
 

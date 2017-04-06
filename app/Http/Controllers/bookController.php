@@ -37,7 +37,7 @@ class bookController extends Controller
                     $msg->to($anotherEmail)->subject('您的预定已经确认');
                 });
                 if($toBookedUser && $toUser){
-                    return redirect()->back()->with(['success' => '预定成功']);
+                    return redirect()->back()->with(['success' => 'book success']);
                 }else{
                     return redirect()->back()->with(['error' => '邮件发送失败，请稍后再试']);
                 }

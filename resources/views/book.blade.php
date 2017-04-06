@@ -18,11 +18,11 @@
                             <div style="padding: 15px;" class="bg-danger">{{ Session::get('error') }}</div>
                         @endif
                         <div class="form-group">
-                            <label for="name">book name:</label>
+                            <label for="name">书名：</label>
                             <input type="text" class="form-control" id="name" name="name" placeholder="请在此输入你想提供的书的书名">
                         </div>
                         <div class="form-group">
-                            <label for="describe">book description:</label>
+                            <label for="describe">书籍描述：</label>
                             <textarea name="description" class="form-control" id="describe" cols="30" rows="10" placeholder="请在此输入您提供书的详细信息，并写明您想交换的书名"></textarea>
                         </div>
                         <button type="submit" class="btn btn-primary">submit</button>
