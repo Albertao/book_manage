@@ -11,7 +11,7 @@ class homeController extends Controller
 {
     //
     public function index(){
-        $books = Book::where('is_booked', 0)->paginate(10);
+        $books = Book::where('is_booked', 0)->orderBy('created_at', 'desc')->paginate(10);
         return view('index')->with(['books' => $books]);
     }
 

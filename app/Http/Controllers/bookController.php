@@ -37,15 +37,15 @@ class bookController extends Controller
                     $msg->to($anotherEmail)->subject('您的预定已经确认');
                 });
                 if($toBookedUser && $toUser){
-                    return redirect()->back()->with(['success' => 'book success']);
+                    return redirect()->to('/')->with(['success' => 'book success']);
                 }else{
-                    return redirect()->back()->with(['error' => '邮件发送失败，请稍后再试']);
+                    return redirect()->to('/')->with(['error' => '邮件发送失败，请稍后再试']);
                 }
             }else{
-                return redirect()->back()->with(['error' => '预定失败，请稍后再试']);
+                return redirect()->to('/')->with(['error' => '预定失败，请稍后再试']);
             }
         }else{
-            return redirect()->back()->with(['error' => '您尚未登录']);
+            return redirect()->to('/')->with(['error' => '您尚未登录']);
         }
     }
 
